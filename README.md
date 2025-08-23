@@ -1,7 +1,6 @@
 <h1 align="center">AudioWaveformVisualizer</h1>
 
 <p align="center"><img src="https://github.com/illsk1lls/AudioWaveformVisualizer/blob/main/.readme/visualizer.png?raw=true"></p>
-<div align="center">
 
 Testing/Build Instructions (Solution file is included in project folder):
 
