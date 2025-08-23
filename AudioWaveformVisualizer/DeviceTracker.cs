@@ -7,32 +7,17 @@ namespace AudioWaveformVisualizer
     {
         private IMMDeviceEnumerator? deviceEnumerator;
         private AudioCapture capture;
-        private HandlerRoutine? consoleHandler;
 
         public DeviceTracker(AudioCapture captureInstance)
         {
             capture = captureInstance ?? throw new ArgumentNullException(nameof(captureInstance));
         }
 
-        [DllImport("Kernel32.dll")]
-        public static extern bool SetConsoleCtrlHandler(HandlerRoutine? Handler, bool Add);
-
-        public delegate bool HandlerRoutine(CtrlTypes ctrlType);
-
-        public enum CtrlTypes
-        {
-            CTRL_C_EVENT = 0,
-            CTRL_BREAK_EVENT = 1,
-            CTRL_CLOSE_EVENT = 2,
-            CTRL_LOGOFF_EVENT = 5,
-            CTRL_SHUTDOWN_EVENT = 6
-        }
+        [DllImport("ole32.dll")]
+        public static extern int ReleaseComObject(object o);
 
         public void Start()
         {
-            consoleHandler = new HandlerRoutine(ConsoleCtrlCheck);
-            SetConsoleCtrlHandler(consoleHandler, true);
-
             deviceEnumerator = (IMMDeviceEnumerator)new MMDeviceEnumerator();
             deviceEnumerator.RegisterEndpointNotificationCallback(this);
 
@@ -49,23 +34,9 @@ namespace AudioWaveformVisualizer
             if (final && deviceEnumerator != null)
             {
                 deviceEnumerator.UnregisterEndpointNotificationCallback(this);
+                ReleaseComObject(deviceEnumerator);
                 deviceEnumerator = null;
             }
-        }
-
-        private bool ConsoleCtrlCheck(CtrlTypes ctrlType)
-        {
-            switch (ctrlType)
-            {
-                case CtrlTypes.CTRL_C_EVENT:
-                case CtrlTypes.CTRL_BREAK_EVENT:
-                case CtrlTypes.CTRL_CLOSE_EVENT:
-                case CtrlTypes.CTRL_LOGOFF_EVENT:
-                case CtrlTypes.CTRL_SHUTDOWN_EVENT:
-                    Stop(true);
-                    break;
-            }
-            return false;
         }
 
         public void OnDeviceStateChanged(string? pwstrDeviceId, uint dwNewState)
