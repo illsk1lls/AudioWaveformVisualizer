@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34616.47
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioWaveformVisualizer", "AudioWaveformVisualizer.csproj", "{F8DDB45D-E7A0-4B78-81F1-61C6ACB4A1C5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8DDB45D-E7A0-4B78-81F1-61C6ACB4A1C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8DDB45D-E7A0-4B78-81F1-61C6ACB4A1C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8DDB45D-E7A0-4B78-81F1-61C6ACB4A1C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8DDB45D-E7A0-4B78-81F1-61C6ACB4A1C5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B5A00EE2-3B7A-4D54-AE7F-72A837E8ED68}
+	EndGlobalSection
+EndGlobal
